@@ -45,7 +45,7 @@ class NewsController extends Controller
             'date' => $input['date'],
             'status' => $input['status'],
             'meta' => $input['meta'],
-            'description' => $input['description'],
+            'content' => $input['content'],
         ];
         if(isset($request->image))
         {
@@ -53,7 +53,7 @@ class NewsController extends Controller
             $request->image->move(public_path('images'), $imageName);
             $data['image'] = 'images/' . $imageName;
         }
-        // $input['description'] = 'test';
+        // $input['content'] = 'test';
         $new = News::create($data);
 
         return redirect('admin/news');
@@ -100,7 +100,7 @@ class NewsController extends Controller
             'date' => $input['date'],
             'status' => $input['status'],
             'meta' => $input['meta'],
-            'description' => $input['description'],
+            'content' => $input['content'],
         ];
         if(isset($request->image))
         {
@@ -108,7 +108,7 @@ class NewsController extends Controller
             $request->image->move(public_path('images'), $imageName);
             $data['image'] = 'images/' . $imageName;
         }
-        // $input['description'] = 'test';
+        // $input['content'] = 'test';
         $news->update($data);
         return redirect('admin/news');
     }

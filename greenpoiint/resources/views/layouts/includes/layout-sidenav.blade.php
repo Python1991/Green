@@ -8,7 +8,15 @@
         </li>
 
         <li class="sidenav-item{{ Request::is('/') ? ' active' : '' }}">
-            <a href="{{ route('news.index') }}" class="sidenav-link"><i class="sidenav-icon fas fa-bullhorn d-block"></i><div>News</div></a>
+            <a href="{{ route('news.index') }}" class="sidenav-link"><i class="sidenav-icon fas fa-bullhorn"></i><div>{{ trans('side_nav.news')}}</div></a>
+        </li>
+
+        <li class="sidenav-item{{ Request::is('/') ? ' active' : '' }}">
+            <a href="{{ route('qa.index') }}" class="sidenav-link"><i class="sidenav-icon fas fa-question"></i><div>{{ trans('side_nav.qa')}}</div></a>
+        </li>
+
+        <li class="sidenav-item{{ Request::is('/') ? ' active' : '' }}">
+            <a href="{{ route('contactUs.index') }}" class="sidenav-link"><i class="sidenav-icon fas fa-phone"></i><div>{{ trans('side_nav.contact_us')}}</div></a>
         </li>
 
     </ul>

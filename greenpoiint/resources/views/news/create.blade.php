@@ -12,11 +12,11 @@
     <script src="{{ mix('/vendor/libs/moment/moment.js') }}"></script>
     <script src="{{ mix('/vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js') }}"></script>
     <script>
-            // Quill does not support IE 10 and below so don't load it to prevent console errors
-            if (typeof document.documentMode !== 'number' || document.documentMode > 10) {
-                document.write('\x3Cscript src="{{ mix('/vendor/libs/quill/quill.js') }}">\x3C/script>');
-            }
-        </script>
+        // Quill does not support IE 10 and below so don't load it to prevent console errors
+        if (typeof document.documentMode !== 'number' || document.documentMode > 10) {
+            document.write('\x3Cscript src="{{ mix('/vendor/libs/quill/quill.js') }}">\x3C/script>');
+        }
+    </script>
         
     <script>
         $(function() {
@@ -61,9 +61,9 @@
 
 @section('content')
     <div class="card mb-4">
-        <h6 class="card-header">
-            Default
-        </h6>
+        <h4 class="card-header">
+            {{ trans('side_nav.news')}}
+        </h4>
         <div class="card-body">
             <form id="create_news" action="/admin/news" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -95,54 +95,10 @@
                     <textarea name ="meta" class="form-control" rows="5"></textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">{{ trans('general.description') }}</label>
-                    <textarea name="description" style="display:none" id="hiddenArea"></textarea>
+                    <label class="form-label">{{ trans('general.content') }}</label>
+                    <textarea name="content" style="display:none" id="hiddenArea"></textarea>
                     <div class="card-body">
-                        <div id="quill-toolbar">
-                            <span class="ql-formats">
-                                <select class="ql-font"></select>
-                                <select class="ql-size"></select>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-bold"></button>
-                                <button class="ql-italic"></button>
-                                <button class="ql-underline"></button>
-                                <button class="ql-strike"></button>
-                            </span>
-                            <span class="ql-formats">
-                                <select class="ql-color"></select>
-                                <select class="ql-background"></select>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-script" value="sub"></button>
-                                <button class="ql-script" value="super"></button>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-header" value="1"></button>
-                                <button class="ql-header" value="2"></button>
-                                <button class="ql-blockquote"></button>
-                                <button class="ql-code-block"></button>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-list" value="ordered"></button>
-                                <button class="ql-list" value="bullet"></button>
-                                <button class="ql-indent" value="-1"></button>
-                                <button class="ql-indent" value="+1"></button>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-direction" value="rtl"></button>
-                                <select class="ql-align"></select>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-link"></button>
-                                <button class="ql-image"></button>
-                                <button class="ql-video"></button>
-                            </span>
-                            <span class="ql-formats">
-                                <button class="ql-clean"></button>
-                            </span>
-                        </div>
-                        <div id="quill-editor"></div>
+                        @include('general.quill_editor')
                     </div>
                 </div>
                 <div id="submit" class="btn btn-default">Submit</div>

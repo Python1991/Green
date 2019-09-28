@@ -48,7 +48,7 @@
 
         $('#submit').click(function(){
             $('#hiddenArea').val($($('.ql-editor')[0]).html());
-            $('#create_news').submit();
+            $('#insert').submit();
         });
     </script>
     
@@ -64,48 +64,23 @@
 @section('content')
     <div class="card mb-4">
         <h4 class="card-header">
-            {{ trans('side_nav.news')}}
+            {{ trans('side_nav.qa')}}
         </h4>
         <div class="card-body">
-            <form id="create_news" action="/admin/news/{{$news->id}}" method="POST" enctype="multipart/form-data">
+            <form id="insert" action="{{ route('qa.store') }}" method="POST">
                 @csrf
-                @method('PUT')
                 <div class="form-group">
-                    <label class="form-label">{{ trans('general.title') }}</label>
-                    <input value="{{ $news->title }}" name ="title" type="text" class="form-control" placeholder="{{ trans('general.title') }}">
+                    <label class="form-label">{{ trans('qa/general.question') }}</label>
+                    <input value="{{ old('question') }}" name ="question" type="text" class="form-control" placeholder="{{ trans('qa/general.question') }}">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">{{ trans('general.date') }}</label>
-                    <input value="{{ $news->date }}" name ="date" type="text" id="b-m-dtp-date" class="form-control" placeholder="{{ trans('general.date') }}">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">{{ trans('general.status') }}</label>
-                    <label class="switcher">
-                        <input {{$news->status == 1 ? "checked" : ''}} name ="status" type="checkbox" class="switcher-input">
-                        <span class="switcher-indicator">
-                            <span class="switcher-yes"></span>
-                            <span class="switcher-no"></span>
-                        </span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">{{ trans('general.image') }}</label>
-                    <input name ="image" type="file" id="input" onchange="handleFiles(this.files)">
-                    <div id="img"></div>
-                    <img style="width:600px;" src="{{ asset($news->image) }}" id="or_img">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">{{ trans('general.meta') }}</label>
-                    <textarea name ="meta" class="form-control" rows="5">{{ $news->meta }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">{{ trans('general.content') }}</label>
-                    <textarea name="content" style="display:none" id="hiddenArea">{{ $news->content }}</textarea>
+                    <label class="form-label">{{ trans('qa/general.answer') }}</label>
+                    <textarea name="answer" style="display:none" id="hiddenArea">{{ old('answer') }}</textarea>
                     <div class="card-body">
                         @include('general.quill_editor')
                     </div>
                 </div>
-                <div id="submit" class="btn btn-default">Submit</div>
+                <div id="submit" class="btn btn-default">{{ trans('general.insert') }}</div>
             </form>
         </div>
     </div>

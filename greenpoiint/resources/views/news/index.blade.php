@@ -12,7 +12,7 @@
     
     <script>
         $('.news_table').dataTable({
-            "lengthMenu": [[5, 10, 30, -1], [5, 10, 30, "All"]],
+            "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
             "order": [0,"desc"]
         });
 
@@ -36,12 +36,6 @@
 @endsection
 
 @section('content')
-    <h4 class="font-weight-bold py-3 mb-4">
-        <span class="text-muted font-weight-light">Tables /</span> DataTables
-    </h4>
-
-    <!-- DataTable within card -->
-
     <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end mb-3">
         <a href="/news">
             <div class="btn rounded-pill btn-success">
@@ -56,16 +50,17 @@
     </div>
 
     <div class="card">
-        <h6 class="card-header">
-            DataTable within card
-        </h6>
+        <h4 class="card-header">
+            {{ trans('side_nav.news')}}
+        </h4>
         <div class="card-datatable table-responsive">
             <table class="news_table table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>{{ trans('general.id') }}</th>
-                        <th>{{ trans('general.image') }}</th>
+                        <!-- <th>{{ trans('general.image') }}</th> -->
                         <th>{{ trans('general.title') }}</th>
+                        <th>{{ trans('general.meta') }}</th>
                         <th>{{ trans('general.status') }}</th>
                         <th>{{ trans('general.date') }}</th>
                         <th>{{ trans('general.action') }}</th>
@@ -75,8 +70,9 @@
                     @foreach($news as $new)
                         <tr>
                             <td>{{  $new->id }}</td>
-                            <td><img style="    width: 150px;" src="{{ asset($new->image) }}"></td>
+                            <!-- <td><img style="    width: 150px;" src="{{ asset($new->image) }}"></td> -->
                             <td>{{  $new->title }}</td>
+                            <td>{{  $new->meta }}</td>
                             <td>            
                                 <label class="switcher">
                                     <input type="checkbox" class="switcher-input" {{ $new->status == 1 ? "checked" : "" }}>
