@@ -12,7 +12,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@claviska/jquery-minicolors": "~2.3.2",
+        "@claviska/jquery-minicolors": "~2.3.6",
         "animate.css": "~3.7.0",
         "blueimp-gallery": "~2.33.0",
         "bootstrap": "~4.3.1",
